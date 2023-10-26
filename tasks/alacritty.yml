@@ -1,9 +1,9 @@
 - name: Install
   package:
     name:
-      - tmux
+      - alacritty
 - name: Run 'stow --adopt tmux' in .dotfiles
-  ansible.builtin.shell: stow --adopt tmux
+  ansible.builtin.shell: stow --adopt alacritty
   args:
     chdir: "{{ lookup('env', 'HOME') }}/.dotfiles"
 - name: Run 'git reset --hard' in .dotfiles

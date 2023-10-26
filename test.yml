@@ -2,5 +2,4 @@
   connection: local
   become: true
   tasks:
-    - include: dev.yml
-    - include: tasks/xfce4.yml
+    - include: tasks/dotfiles.yml

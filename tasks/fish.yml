@@ -1,9 +1,15 @@
 - name: Install
   package:
     name:
-      - tmux
+      - fish
+      - fisher
+      - logo-ls
+- name: Install theme and z
+  ansible.builtin.shell: fisher install jorgebucaran/hydro jethrokuan/z
+  args:
+    chdir: "{{ lookup('env', 'HOME') }}"
 - name: Run 'stow --adopt tmux' in .dotfiles
-  ansible.builtin.shell: stow --adopt tmux
+  ansible.builtin.shell: stow --adopt fish
   args:
     chdir: "{{ lookup('env', 'HOME') }}/.dotfiles"
 - name: Run 'git reset --hard' in .dotfiles

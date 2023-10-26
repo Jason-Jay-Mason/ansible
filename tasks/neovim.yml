@@ -1,9 +1,11 @@
 - name: Install
   package:
     name:
-      - tmux
-- name: Run 'stow --adopt tmux' in .dotfiles
-  ansible.builtin.shell: stow --adopt tmux
+      - neovim
+      - nvim-packer-git
+      - ripgrep
+- name: Run 'stow --adopt' in .dotfiles
+  ansible.builtin.shell: stow --adopt neovim
   args:
     chdir: "{{ lookup('env', 'HOME') }}/.dotfiles"
 - name: Run 'git reset --hard' in .dotfiles

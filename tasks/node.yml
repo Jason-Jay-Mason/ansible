@@ -1,0 +1,21 @@
+- name: Install
+  package:
+    name:
+      - fish
+      - fisher
+- name: Install nvm
+  ansible.builtin.shell: fisher install orgebucaran/nvm.fish
+  args:
+    chdir: "{{ lookup('env', 'HOME') }}"
+- name: Install latest node stable
+  ansible.builtin.shell: nvm install lts
+  args:
+    chdir: "{{ lookup('env', 'HOME') }}"
+- name: Set lts as default accross sessions
+  ansible.builtin.shell: set --universal nvm_default_version lts
+  args:
+    chdir: "{{ lookup('env', 'HOME') }}"
+- name: Install global npm packages
+  ansible.builtin.shell: npm install -g pnpm @stackbit/cli
+  args:
+    chdir: "{{ lookup('env', 'HOME') }}"

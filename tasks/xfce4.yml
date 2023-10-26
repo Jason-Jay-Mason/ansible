@@ -1,0 +1,39 @@
+- name: Install stow
+  package:
+    name:
+      - inkscape
+      - zoom
+- name: ensure themes directory
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.themes"
+    state: directory
+- name: ensure icons directory
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.icons"
+    state: directory
+- name: Cloning icons
+  ansible.builtin.git:
+    repo: 'https://github.com/m4thewz/dracula-icons.git'
+    dest: "{{ lookup('env', 'HOME') }}/.icons/dracula-icons"
+    recursive: yes
+    update: yes
+    version: main
+- name: Cloning theme
+  ansible.builtin.git:
+    repo: 'https://github.com/Fausto-Korpsvart/Rose-Pine-GTK-Theme.git'
+    dest: "{{ lookup('env', 'HOME') }}/.theme/deleteme"
+    recursive: yes
+    update: yes
+    version: main
+- name: Extract the themes
+  ansible.builtin.shell: cp -r ./deleteme/themes/* ./ && rm -rf ./deleteme
+  args:
+    chdir: "{{ lookup('env', 'HOME') }}/.theme"
+- name: Run 'stow --adopt' in .dotfiles
+  ansible.builtin.shell: stow --adopt xfce4
+  args:
+    chdir: "{{ lookup('env', 'HOME') }}/.dotfiles"
+- name: Run 'git reset --hard' in .dotfiles
+  ansible.builtin.shell: git reset --hard
+  args:
+    chdir: "{{ lookup('env', 'HOME') }}/.dotfiles"

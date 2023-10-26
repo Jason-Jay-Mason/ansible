@@ -1,0 +1,20 @@
+- name: Install
+  package:
+    name:
+      - git
+      - github-cli
+- name: Git email
+  git_config:
+    name: user.email
+    scope: global
+    value: "jasonjaymason@gmail.com"
+- name: Git name
+  git_config:
+    name: user.name
+    scope: global
+    value: "Jason Mason"
+- name: Git name
+  git_config:
+    name: core.editor
+    scope: global
+    value: "nvim"
