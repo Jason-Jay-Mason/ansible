@@ -1,0 +1,6 @@
+- hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    # - include: tasks/dotfiles.yml
+    - include: tasks/tmux.yml
