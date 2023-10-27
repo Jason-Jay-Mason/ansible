@@ -6,6 +6,18 @@ if ! command -v yay &> /dev/null; then
     exit 1
 fi
 
+# Update keyrings using yay
+echo "Updating keyrings..."
+yay -S endeavouros-keyring archlinux-keyring
+
+# Check if the keyring update was successful
+if [ $? -eq 0 ]; then
+    echo "Keyrings have been successfully updated."
+else
+    echo "Failed to update keyrings. Please check for errors."
+    exit 1
+fi
+
 # Install Ansible using yay
 echo "Installing Ansible using yay..."
 yay -S ansible
