@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Check if yay is installed
+if ! command -v yay &> /dev/null; then
+    echo "yay package manager is not installed. Please install it."
+    exit 1
+fi
+
+# Install Ansible using yay
+echo "Installing Ansible using yay..."
+yay -S ansible
+
+# Check if the installation was successful
+if [ $? -eq 0 ]; then
+    echo "Ansible has been successfully installed."
+else
+    echo "Failed to install Ansible. Please check for errors."
+    exit 1
+fi
+
+# Update the system using yay
+echo "Updating the system..."
+yay -Syyu
+
+# Check if the system update was successful
+if [ $? -eq 0 ]; then
+    echo "System has been successfully updated."
+else
+    echo "Failed to update the system. Please check for errors."
+    exit 1
+fi
+
+echo "Done."
