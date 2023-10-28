@@ -6,9 +6,12 @@ if ! command -v yay &> /dev/null; then
     exit 1
 fi
 
+# Update mirrors
+yay -S reflector
+
 # Update keyrings using yay
 echo "Updating keyrings..."
-yay -S endeavouros-keyring archlinux-keyring
+yay -Sy endeavouros-keyring archlinux-keyring
 
 # Check if the keyring update was successful
 if [ $? -eq 0 ]; then

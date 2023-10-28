@@ -1,6 +1,5 @@
 - hosts: localhost
   connection: local
-  become: true
   tasks:
     - include: tasks/langs.yml
     - include: tasks/dotfiles.yml
@@ -11,3 +10,4 @@
     - include: tasks/fonts.yml
     - include: tasks/node.yml
     - include: tasks/git.yml
+    - include: tasks/xfce4.yml

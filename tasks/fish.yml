@@ -1,18 +1,16 @@
-- name: Install
-  package:
-    name:
-      - fish
-      - fisher
-      - logo-ls
+- name: Installing fish and packages
+  ansible.builtin.shell: yay --noconfirm -S fisher logo-ls fish
+  become: false
+  args:
+    chdir: "{{ lookup('env', 'HOME') }}/."
 - name: Install theme and z
   ansible.builtin.shell: fisher install jorgebucaran/hydro jethrokuan/z
+  become: false
   args:
-    chdir: "{{ lookup('env', 'HOME') }}"
-- name: Run 'stow --adopt tmux' in .dotfiles
-  ansible.builtin.shell: stow --adopt fish
-  args:
-    chdir: "{{ lookup('env', 'HOME') }}/.dotfiles"
-- name: Run 'git reset --hard' in .dotfiles
-  ansible.builtin.shell: git reset --hard
+    chdir: "{{ lookup('env', 'HOME') }}/."
+    executable: /usr/bin/fish
+- name: Run 'stow --adopt' in .dotfiles
+  ansible.builtin.shell: stow -D fish && stow fish
+  become: false
   args:
     chdir: "{{ lookup('env', 'HOME') }}/.dotfiles"

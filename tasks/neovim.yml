@@ -1,14 +1,10 @@
-- name: Install
-  package:
-    name:
-      - neovim
-      - nvim-packer-git
-      - ripgrep
-- name: Run 'stow --adopt' in .dotfiles
-  ansible.builtin.shell: stow --adopt neovim
+- name: Installing neovim and packages
+  become: false
+  ansible.builtin.shell: yay -S --noconfirm nvim-packer-git neovim ripgrep 
   args:
     chdir: "{{ lookup('env', 'HOME') }}/.dotfiles"
-- name: Run 'git reset --hard' in .dotfiles
-  ansible.builtin.shell: git reset --hard
+- name: Run 'stow --adopt' in .dotfiles
+  become: false
+  ansible.builtin.shell: stow -D neovim && stow neovim
   args:
     chdir: "{{ lookup('env', 'HOME') }}/.dotfiles"

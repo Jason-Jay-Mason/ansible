@@ -1,12 +1,10 @@
 - name: Install
+  become: true
   package:
     name:
       - tmux
 - name: Run 'stow --adopt tmux' in .dotfiles
-  ansible.builtin.shell: stow --adopt tmux
-  args:
-    chdir: "{{ lookup('env', 'HOME') }}/.dotfiles"
-- name: Run 'git reset --hard' in .dotfiles
-  ansible.builtin.shell: git reset --hard
+  ansible.builtin.shell: stow -D tmux && stow tmux
+  become: false
   args:
     chdir: "{{ lookup('env', 'HOME') }}/.dotfiles"

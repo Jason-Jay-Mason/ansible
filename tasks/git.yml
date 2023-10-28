@@ -1,19 +1,23 @@
 - name: Install
+  become: true
   package:
     name:
       - git
       - github-cli
 - name: Git email
+  become: false
   git_config:
     name: user.email
     scope: global
     value: "jasonjaymason@gmail.com"
 - name: Git name
+  become: false
   git_config:
     name: user.name
     scope: global
     value: "Jason Mason"
 - name: Git name
+  become: false
   git_config:
     name: core.editor
     scope: global
