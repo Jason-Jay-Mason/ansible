@@ -8,7 +8,7 @@
   register: register_nerd
 - name: Download and unarchive Source Code
   ansible.builtin.unarchive:
-    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/SourceCodePro.zip
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/SourceCodePro.zip
     dest: "{{ lookup('env', 'HOME') }}/.local/share/fonts"
     remote_src: yes
   when: not register_nerd.stat.exists
