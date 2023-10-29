@@ -1,4 +1,4 @@
 - hosts: localhost
   connection: local
   tasks:
-    - include: tasks/xfce4.yml
+    - include: tasks/fonts.yml
