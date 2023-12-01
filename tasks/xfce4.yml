@@ -1,5 +1,5 @@
 - name: Installing apps
-  ansible.builtin.shell: yay --noconfirm -S zoom inkscape
+  ansible.builtin.shell: yay --noconfirm -S zoom inkscape beekeeper-studio-appimage
   become: false
   args:
     chdir: "{{ lookup('env', 'HOME') }}/."
@@ -16,7 +16,7 @@
 - name: Cloning icons
   become: false
   ansible.builtin.git:
-    repo: 'https://github.com/m4thewz/dracula-icons.git'
+    repo: "https://github.com/m4thewz/dracula-icons.git"
     dest: "{{ lookup('env', 'HOME') }}/.icons/dracula-icons"
     recursive: yes
     update: yes
@@ -24,7 +24,7 @@
 - name: Cloning theme
   become: false
   ansible.builtin.git:
-    repo: 'https://github.com/Fausto-Korpsvart/Rose-Pine-GTK-Theme.git'
+    repo: "https://github.com/Fausto-Korpsvart/Rose-Pine-GTK-Theme.git"
     dest: "{{ lookup('env', 'HOME') }}/.themes/deleteme"
     recursive: yes
     update: yes
