@@ -1,5 +1,5 @@
 - name: Installing apps
-  ansible.builtin.shell: yay --noconfirm -S zoom inkscape beekeeper-studio-appimage
+  ansible.builtin.shell: yay --noconfirm -S zoom inkscape beekeeper-studio-appimage redshift
   become: false
   args:
     chdir: "{{ lookup('env', 'HOME') }}/."
