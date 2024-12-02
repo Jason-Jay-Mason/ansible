@@ -1,5 +1,10 @@
-- name: Installing fish and packages
-  ansible.builtin.shell: yay --noconfirm -S fisher logo-ls fish
+- name: Installing fish and packages for terminal
+  ansible.builtin.shell: yay --noconfirm -S fisher logo-ls fish fzf fd bat
+  become: false
+  args:
+    chdir: "{{ lookup('env', 'HOME') }}/."
+- name: install devicon-lookup for icons in fzf
+  ansible.builtin.shell: cargo install devicon-lookup
   become: false
   args:
     chdir: "{{ lookup('env', 'HOME') }}/."
