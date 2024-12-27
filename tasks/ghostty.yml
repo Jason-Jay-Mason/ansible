@@ -1,0 +1,11 @@
+## using ghosty now
+# - name: Installing ghostty
+#   become: false
+#   ansible.builtin.shell: yay -S --noconfirm ghostty-git
+#   args:
+#     chdir: "{{ lookup('env', 'HOME') }}/.dotfiles"
+# - name: Run 'stow --adopt' in .dotfiles
+#   become: false
+#   ansible.builtin.shell: stow -D ghostty && stow ghostty
+#   args:
+#     chdir: "{{ lookup('env', 'HOME') }}/.dotfiles"
